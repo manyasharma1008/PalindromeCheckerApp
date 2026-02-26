@@ -7,8 +7,26 @@ Reg. No.: RA2411026010261
 
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
-        System.out.println("Welcome to the Palindrome Checker Management System.");
-        System.out.println("Version : 1.0");
-        System.out.println("System initialized successfully.");
+
+        String check = "Madam".toLowerCase();
+
+        int i = 0;
+        int j = check.length() - 1;
+        boolean isPalindrome = true;
+
+        while(i < j) {
+            if(check.charAt(i) != check.charAt(j)) {
+                isPalindrome = false;
+                break;
+            }
+            i++;
+            j--;
+        }
+
+        if(isPalindrome) {
+            System.out.println("Palindrome");
+        } else {
+            System.out.println("Not palindrome");
+        }
     }
 }
