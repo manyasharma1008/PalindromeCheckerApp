@@ -8,20 +8,31 @@ import java.util.Scanner;
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+            Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter a string: ");
-        String original = scanner.nextLine();
+            System.out.print("Enter a string: ");
+            String input = scanner.nextLine();
 
-        StringBuilder sb = new StringBuilder(original);
-        String reversed = sb.reverse().toString();
+            char[] chars = input.toCharArray();
 
-        if (original.equals(reversed)) {
-            System.out.println("The string is a palindrome.");
-        } else {
-            System.out.println("The string is NOT a palindrome.");
+            int start = 0;
+            int end = chars.length - 1;
+            boolean isPalindrome = true;
+
+            while (start < end) {
+                if (chars[start] != chars[end]) {
+                    isPalindrome = false;
+                    break;
+                }
+                start++;
+                end--;
+            }
+
+            if (isPalindrome) {
+                System.out.println("The string is a palindrome.");
+            } else {
+                System.out.println("The string is NOT a palindrome.");
+            }
+            scanner.close();
         }
-
-        scanner.close();
-    }
 }
