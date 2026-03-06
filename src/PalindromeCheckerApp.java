@@ -6,6 +6,8 @@ Reg. No.: RA2411026010261
 */
 import java.util.Scanner;
 import java.util.Stack;
+import java.util.Queue;
+import java.util.LinkedList;
 public class PalindromeCheckerApp {
         public static void main(String[] args) {
             Scanner scanner = new Scanner(System.in);
@@ -14,17 +16,24 @@ public class PalindromeCheckerApp {
             String input = scanner.nextLine();
 
             Stack<Character> stack = new Stack<>();
+            Queue<Character> queue = new LinkedList<>();
 
             for (int i = 0; i < input.length(); i++) {
-                stack.push(input.charAt(i));
+                char ch = input.charAt(i);
+                stack.push(ch);
+                queue.add(ch);
             }
 
-            String reversed = "";
+            boolean isPalindrome = true;
+
             while (!stack.isEmpty()) {
-                reversed = reversed + stack.pop();
+                if (stack.pop() != queue.remove()) {
+                    isPalindrome = false;
+                    break;
+                }
             }
 
-            if (input.equals(reversed)) {
+            if (isPalindrome) {
                 System.out.println("The string \"" + input + "\" is a Palindrome.");
             } else {
                 System.out.println("The string \"" + input + "\" is NOT a Palindrome.");
