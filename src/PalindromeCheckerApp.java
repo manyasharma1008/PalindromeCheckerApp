@@ -12,14 +12,21 @@ import java.util.Deque;
 import java.util.ArrayDeque;
 
 public class PalindromeCheckerApp {
-        public static boolean isPalindrome(String str, int start, int end) {
-            if (start >= end)
-                return true;
+        public static boolean isPalindrome(String str) {
+            str = str.replaceAll("\\s+", "").toLowerCase();
 
-            if (str.charAt(start) != str.charAt(end))
-                return false;
+            int start = 0;
+            int end = str.length() - 1;
 
-            return isPalindrome(str, start + 1, end - 1);
+            while (start < end) {
+                if (str.charAt(start) != str.charAt(end))
+                    return false;
+
+                start++;
+                end--;
+            }
+
+            return true;
         }
 
         public static void main(String[] args) {
@@ -28,9 +35,7 @@ public class PalindromeCheckerApp {
             System.out.println("Enter a string to check palindrome:");
             String input = scanner.nextLine();
 
-            boolean result = isPalindrome(input, 0, input.length() - 1);
-
-            if (result) {
+            if (isPalindrome(input)) {
                 System.out.println("The string \"" + input + "\" is a Palindrome.");
             } else {
                 System.out.println("The string \"" + input + "\" is NOT a Palindrome.");
